@@ -1,28 +1,28 @@
 {
+  "id": "sosocial-nginx",
+  "instances": 2,
+  "cpus": 0.2,
+  "mem": 64.0,
+  "uris": [],
   "container": {
-    "id": "sosocial-nginx",
-    "instances": 2,
-    "cpus": 0.2,
-    "mem": 64.0,
-    "uris": [],
-    "type": "DOCKER",
-    "docker": {
-      "image": "molinto/ngnix",
-      "network": "BRIDGE",
-      "portMappings": [
-        { "containerPort": 80, "hostPort": 0, "protocol": "tcp" }
-      ]
-    }
+      "type": "DOCKER",
+      "docker": {
+          "image": "molinto/ngnix",
+          "network": "BRIDGE",
+          "portMappings": [
+              { "containerPort": 80, "hostPort": 0, "protocol": "tcp" }
+          ]
+      }
   },
   "healthChecks": [
-    {
-      "protocol": "HTTP",
-      "portIndex": 0,
-      "path": "/",
-      "gracePeriodSeconds": 5,
-      "intervalSeconds": 20,
-      "maxConsecutiveFailures": 3
-    }
+      {
+          "protocol": "HTTP",
+          "portIndex": 0,
+          "path": "/",
+          "gracePeriodSeconds": 5,
+          "intervalSeconds": 20,
+          "maxConsecutiveFailures": 3
+      }
   ],
   "cmd": ""
 }

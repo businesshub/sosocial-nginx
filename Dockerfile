@@ -11,14 +11,17 @@ RUN \
   chown -R www-data:www-data /var/lib/nginx
 
 # Get the repository from Github
-RUN git clone https://83cbb505d46274d68f5cee34b032c89edfbc5d13:x-oauth-basic@github.com/sosocial/sosocial-nginx /home/sosocial-nginx
+RUN git clone https://83cbb505d46274d68f5cee34b032c89edfbc5d13:x-oauth-basic@github.com/sosocial/sosocial-nginx.git /home/sosocial-nginx
 
-ADD /home/sosocial-nginx/nginx.conf /etc/nginx/
+# Define working directory.
+WORKDIR  /home/sosocial-nginx
+
+ADD nginx.conf /etc/nginx/conf.d/
 
 # Define mountable directories.
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
-# Define working directory.
+# Define new working directory.
 WORKDIR /etc/nginx
 
 # Define default command.

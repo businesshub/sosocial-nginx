@@ -16,7 +16,7 @@ RUN git clone https://83cbb505d46274d68f5cee34b032c89edfbc5d13:x-oauth-basic@git
 # Define working directory.
 WORKDIR  /home/sosocial-nginx
 
-ADD nginx.conf /etc/nginx/conf.d/
+ADD sosocial.conf /etc/sites-enabled/sosocial.conf
 
 # Define mountable directories.
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
@@ -24,9 +24,9 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 # Define new working directory.
 WORKDIR /etc/nginx
 
-# Define default command.
-CMD ["nginx"]
-
 # Expose ports.
 EXPOSE 80
 EXPOSE 443
+
+# Define default command.
+CMD ["nginx"]

@@ -1,9 +1,3 @@
-#
-# Nginx Dockerfile
-#
-# https://github.com/dockerfile/nginx
-#
-
 # Pull base image.
 FROM dockerfile/ubuntu
 
@@ -16,10 +10,13 @@ RUN \
   echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
   chown -R www-data:www-data /var/lib/nginx
 
+# Get the repository from Github
+RUN git clone https://83cbb505d46274d68f5cee34b032c89edfbc5d13:x-oauth-basic@github.com/sosocial/sosocial-nginx /home/sosocial-nginx
+
+ADD /home/sosocial-nginx /etc/nginx/
+
 # Define mountable directories.
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
-
-ADD nginx.conf /etc/nginx/
 
 # Define working directory.
 WORKDIR /etc/nginx

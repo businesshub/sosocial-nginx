@@ -1,7 +1,7 @@
 {
     "id": "sosocial-nginx",
     "instances": 1,
-    "cpus": 0.5,
+    "cpus": 0.25,
     "mem": 256,
     "uris": [],
     "container": {

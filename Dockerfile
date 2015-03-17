@@ -10,23 +10,18 @@ RUN \
   echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
   chown -R www-data:www-data /var/lib/nginx
 
-# Get the repository from Github.
-RUN git clone https://83cbb505d46274d68f5cee34b032c89edfbc5d13:x-oauth-basic@github.com/sosocial/sosocial-nginx.git /home/sosocial-nginx/
-
-# Define working directory.
-WORKDIR  /home/sosocial-nginx/
-
-ADD sosocial.conf /etc/nginx/sites-available/sosocial
-RUN ln -s /etc/nginx/sites-available/sosocial /etc/nginx/sites-enabled/sosocial
-
 # Define mountable directories.
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
-# Define new working directory.
+# Define working directory.
 WORKDIR /etc/nginx
 
-# Expose ports.
-EXPOSE 80 443
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Define default command.
 CMD ["nginx"]
+
+# Expose ports.
+EXPOSE 80 443

@@ -1,6 +1,6 @@
 {
     "id": "sosocial-nginx",
-    "instances": 1,
+    "instances": 2,
     "cpus": 0.25,
     "mem": 256,
     "uris": [],
@@ -14,15 +14,15 @@
             ]
         }
     },
-  "healthChecks": [
-      {
-          "protocol": "HTTP",
-          "portIndex": 0,
-          "path": "/",
-          "gracePeriodSeconds": 5,
-          "intervalSeconds": 20,
-          "maxConsecutiveFailures": 3
-      }
-  ],
-  "cmd": "nginx"
+    "healthChecks": [
+        {
+            "protocol": "HTTP",
+            "portIndex": 0,
+            "path": "/",
+            "gracePeriodSeconds": 5,
+            "intervalSeconds": 20,
+            "maxConsecutiveFailures": 3
+        }
+    ],
+    "cmd": "nginx"
 }
